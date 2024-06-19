@@ -9,7 +9,7 @@ enter_tdn <- readline(prompt = "Enter a three-digit positive number: ")
 
 #2. Check if the user input is numeric. If not, print an error message and quit.
 if (is.na(as.numeric(enter_tdn))) { 
-  cat("Error: Input is not numeric") 
+  print("Error: Input is not numeric") 
   stop(save = "no") 
   }
 
