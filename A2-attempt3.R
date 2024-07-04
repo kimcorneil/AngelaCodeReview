@@ -68,3 +68,7 @@ while (attempts < max_attempts) {
   cat("Incorrect guesses:", paste(incorrect_guesses, collapse = " "), "\n")
   cat("Remaining tries:", max_attempts - attempts, "\n")
 }
+
+if (attempts == max_attempts) {
+  cat("You've exhausted your attempts. The secret word was:", secret_word, "\n")
+}
