@@ -44,26 +44,20 @@ while (attempts < max_attempts) {
     next
   }
   
-  if (grepl(guess, secret_word)) {
+  found <- FALSE
+  for (i in 1:secret_word_length) {
+    if (substr(secret_word, i, i) == guess) {
+      correct_guesses[i] <- guess
+      found <- TRUE
+    }
+  }
+  
+  if (found) {
     cat("Correct guess!\n")
-    positions <- which(strsplit(secret_word, "")[[1]] == guess)
-    correct_guesses[positions] <- guess
   } else {
     cat("Wrong guess.\n")
     incorrect_guesses <- c(incorrect_guesses, guess)
     attempts <- attempts + 1
   }
   
-  if (all(correct_guesses != "_")) {
-    cat("Congratulations! You've guessed the word:", secret_word, "\n")
-    break
-  }
   
-  cat("incorrect guesses:", paste(wrong_guesses, collapse = " "), "\n")
-  cat("Remaining tries:", max_attempts - attempts, "\n")
-}
-
-if (tries == max_attempts) {
-  cat("You've exhausted your attempts. The secret word was:", secret_word, "\n")
-}
-
