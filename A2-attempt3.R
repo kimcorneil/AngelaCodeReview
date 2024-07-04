@@ -60,4 +60,11 @@ while (attempts < max_attempts) {
     attempts <- attempts + 1
   }
   
+  if (all(correct_guesses != "_")) {
+    cat("Congratulations! You've guessed the word:", secret_word, "\n")
+    break
+  }
   
+  cat("Incorrect guesses:", paste(incorrect_guesses, collapse = " "), "\n")
+  cat("Remaining tries:", max_attempts - attempts, "\n")
+}
