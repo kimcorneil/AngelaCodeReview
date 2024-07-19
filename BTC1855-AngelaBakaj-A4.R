@@ -3,6 +3,7 @@
 
 library(dplyr)
 library(tidyr)
+library(stringr)
 
 # Reading in the UFO sightings dataset 
 
@@ -32,12 +33,15 @@ which(is.na(ufo_dataset$duration.seconds))
 range(ufo_dataset$duration.seconds)
 # Logically speaking, a UFO sighting should not last longer than a few minutes, on average (according to Google)
 # For good measure, I will extend this window of time to say, 8 hours; any duration longer than this is likely an inconsistent result.
-
-
-
+new_duration.seconds <- filter(ufo_dataset, ufo_dataset$duration.seconds < 28800)
+new_duration.seconds
 
 # Removing the Hoax sightings:
-# 
+# I will subset the "comments" section to exclude the sightings identified by NUFORC.
+new_comments <- filter(ufo_dataset, !str_detect(comments, "NUFORC"))
+
+# Adding "report_delay" column to the dataset and populate it with the following measurement for each observation:
+# The time difference in days, between the date of the sighting and the date it was reported.
 
 
 
