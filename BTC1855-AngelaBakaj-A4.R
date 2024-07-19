@@ -8,6 +8,7 @@ library(lubridate)
 
 # Reading in the UFO sightings dataset 
 ufo_dataset <- read.csv("~/Downloads/ufo_subset.csv", header = TRUE)
+# Assessing the dataset visually:
 View(ufo_dataset)
 head(ufo_dataset, 10)
 
@@ -41,6 +42,7 @@ new_duration.seconds
 
 # Removing the Hoax sightings:
 # I will subset the "comments" section to exclude the sightings identified by NUFORC.
+# Note: I am using the "str_detect" function to select these hoax sightings commented by NUFORC.
 new_comments <- filter(new_duration.seconds, !str_detect(comments, "NUFORC"))
 
 
@@ -61,16 +63,19 @@ ufo_dataset3 <- ufo_dataset2
 ufo_dataset3$report_delay <- as.numeric(ufo_dataset3$report_delay / 86400)
 
 # Removing the rows where the sighting was reported before it happened:
-# Note: Logically, this would remove the negative values in the newly created "report_delay" column
+# Note: Logically, this would remove the negative values in the newly created "report_delay" column.
 ufo_dataset4 <- filter(ufo_dataset3, report_delay > 0)
 
 
 # Creating a table with the average report_delay per country:
+# I am using the "summarize" and "group_by" functions to create this table from the data frame.
 rp_per_country <- summarize(group_by(ufo_dataset4, country), average = mean(report_delay))
 
 # Creating a histogram using the 'duration seconds' column:
-as.numeric(new_duration.seconds)
-hist(new_duration.seconds$duration.seconds, xlab = "Duration in Seconds", ylab = "Frequency", main = "Histogram of the Durations(sec) of UFO Sightings")
+# Note: due to the highly skewed nature of the dataset, I made the choice to take the logarithm of the dataset using the "log" function
+# The log helps to compress the very large values, making the smaller values more visable in the histogram.
+# I labelled the histogram and its axis for increased clarity and readability.
+hist(log(new_duration.seconds$duration.seconds), xlab = "Duration in Seconds", ylab = "Frequency", main = "Histogram of the Durations(sec) of UFO Sightings")
 
 
 
