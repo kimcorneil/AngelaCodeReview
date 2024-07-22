@@ -1,15 +1,6 @@
 ### BTC1855 ASSIGNMENT 4
 ### ANGELA BAKAJ
 
-## REVIEWER COMMENTS ##
-#' Good job! Everything ran smoothly
-#' Your explanations were clear and I liked the use of logical reasoning when cleaning up the length of a UFO sighting column
-#' Your removal of potential hoaxes was simple and well communicated, good job! The only suggestion I would have is to further
-#' justify by removing based off of "NUFORC" instead of hoax (that dataset does make this diffuclt as sometimes NUFORC comments
-#' do not specify if they think it was a hoax but othertimes the word hoax is missing) but a bit more justifcation may have been helpful
-#' For the histogram was there a reason you used log base e (log in R) vs log base 10? 
-#' Overall great work!
-
 library(dplyr)
 library(tidyr)
 library(stringr)
